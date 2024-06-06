@@ -1,4 +1,5 @@
-import { BankData } from "./parseBankData";
+import { BankData } from "../model";
+
 import { parseNumberLocale } from "./parseNumberLocale";
 
 export const formatBotResponseText = (data: BankData | null) => {

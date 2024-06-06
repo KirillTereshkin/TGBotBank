@@ -1,0 +1,15 @@
+import TelegramBot from "node-telegram-bot-api";
+
+import store from "../storage";
+import { lastDataAbsentMsg } from "../constants";
+
+export const onLastData = (bot: TelegramBot, chatId: number) => {
+  const chatInfo = store.getChatInfo(chatId);
+
+  if (chatInfo) {
+    bot.sendMessage(chatId, chatInfo, { parse_mode: "HTML" });
+    return;
+  }
+
+  bot.sendMessage(chatId, lastDataAbsentMsg);
+};

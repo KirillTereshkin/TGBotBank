@@ -1,3 +1,3 @@
-import { CommandsNames } from "../constants";
+import { CommandsNames } from "../model";
 
 export const getPathFromCommand = (command: CommandsNames) => `/${command}`;

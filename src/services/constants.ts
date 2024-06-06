@@ -1,14 +1,18 @@
+import { Banks, CommandsNames } from "./model";
+
 export const TOKEN = "7087024188:AAE4Eoun41NZ5lH7lqKTODBJlqDJBWmyOJE";
 
 export const BANK_REF = "https://www.cbr.ru/banking_sector/credit/coinfo/";
 
-export enum CommandsNames {
-  start = "start",
-  help = "help",
-  botStatus = "bot_status",
-  lastData = "last_data",
-  stop = "stop",
-}
+export const BANKS_REF: Record<Banks, string> = {
+  [Banks.tinkoff]:
+    "https://www.cbr.ru/banking_sector/credit/coinfo/?id=450000562",
+  [Banks.rossbank]:
+    "https://www.cbr.ru/banking_sector/credit/coinfo/?id=450000347",
+  [Banks.sovcombank]:
+    "https://cbr.ru/finorg/foinfo/reports/?ogrn=1144400000425",
+  [Banks.bsp]: "https://www.cbr.ru/banking_sector/credit/coinfo/?id=400000031",
+};
 
 export const commands = [
   {
@@ -37,18 +41,20 @@ export const commands = [
   },
 ];
 
-export const botInfo = [
+export const botInfoMsg = [
   "<b>Информация о боте:</b>",
-  "\n\n",
   "Данный бот пингует каждые 30 секунд сайт банка россии, и проверяет данные по 706 строке.",
   "Бот пришлет новое сообщение как только появится свежий отчет.",
-].join("");
+  "<a href='https://github.com/KirillTereshkin/TGBotBank'>Ссылка</a> на github.",
+  "<a href='https://cloud.ru/ru'>Ссылка</a> на хостинг",
+].join("\n");
 
-export const botStatusOn = "Бот запущен, проверка данных по 706 проводится";
+export const botStatusOnMsg = "Бот запущен, проверка данных по 706 проводится";
 
-export const botStatusOff = "Бот выключен, проверка данных по 706 непроводится";
+export const botStatusOffMsg =
+  "Бот выключен, проверка данных по 706 непроводится";
 
-export const lastDataAbsent =
+export const lastDataAbsentMsg =
   "Последние данные отсутсвуют, запустите бот для для получения данных для анализа";
 
-export const stopBot = "Бот выключен";
+export const stopBotMsg = "Бот выключен";
