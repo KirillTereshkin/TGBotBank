@@ -63,6 +63,8 @@ export const commands = [
   },
 ];
 
+export const botAlreadyStartedMsg = "Бот уже запущен, высылаю последние данные";
+
 export const botInfoMsg = [
   "<b>Информация о боте:</b>",
   "Данный бот пингует каждые 30 секунд сайт банка россии, и проверяет данные по 706 строке.",
