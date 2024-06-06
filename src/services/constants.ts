@@ -1,5 +1,7 @@
 import { Banks, CommandsNames } from "./model";
 
+export const PING_TIME = 30 * 1000;
+
 export const TOKEN = "7087024188:AAE4Eoun41NZ5lH7lqKTODBJlqDJBWmyOJE";
 
 export const CBR_COIN_INFO = "https://www.cbr.ru/banking_sector/credit/coinfo/";
