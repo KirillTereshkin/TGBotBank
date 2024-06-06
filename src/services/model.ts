@@ -7,13 +7,14 @@ export enum CommandsNames {
 }
 
 export enum Banks {
-  tinkoff = "tinkoff",
+  tbank = "tbank",
   rossbank = "rossbank",
   sovcombank = "sovcombank",
   bsp = "bsp",
 }
 
 export type BankData = {
+  bankName: Banks;
   reportTitle: string;
   activeElementsArr: number[];
   passiveElementsArr: number[];

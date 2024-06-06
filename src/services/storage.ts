@@ -1,15 +1,23 @@
+import { Banks } from "./model";
+
 class Store {
   private chatIntervals: Record<number, NodeJS.Timeout | null> = {};
 
-  private chatInfos: Record<number, string> = {};
+  private chatInfos: Record<number, Record<Banks, string>> = {};
 
   constructor() {}
 
-  public setChatInfo = (chatId: number, info: string) => {
-    this.chatInfos[chatId] = info;
+  public setChatInfo = (chatId: number, bankName: Banks, info: string) => {
+    this.chatInfos = {
+      ...this.chatInfos,
+      [chatId]: { ...this.chatInfos[chatId], [bankName]: info },
+    };
   };
 
-  public getChatInfo = (chatId: number) => this.chatInfos[chatId];
+  public getAllChatInfo = (chatId: number) => this.chatInfos[chatId];
+
+  public getChatInfo = (chatId: number, bankName: Banks) =>
+    this.chatInfos[chatId]?.[bankName];
 
   public setChatIntervals = (chatId: number, intervalId: NodeJS.Timeout) => {
     this.chatIntervals[chatId] = intervalId;

@@ -1,23 +1,27 @@
 import TelegramBot from "node-telegram-bot-api";
 
 import store from "../storage";
-import { parseBankData } from "../helpers/parseBankData";
 import { formatBotResponseText } from "../helpers/formatBotResponseText";
+import { parseCbrBanksData } from "../helpers/parsers/parseCbrBanks";
 
-export const onStart = (bot: TelegramBot, chatId: number) => {
+const pingBanks = async (bot: TelegramBot, chatId: number) => {
+  const data = await parseCbrBanksData();
+
+  data.forEach((itm) => {
+    const msg = formatBotResponseText(itm);
+
+    if (store.getChatInfo(chatId, itm.bankName) === msg) {
+      return;
+    }
+
+    store.setChatInfo(chatId, itm.bankName, msg);
+    bot.sendMessage(chatId, msg, { parse_mode: "HTML" });
+  });
+};
+
+export const onStart = async (bot: TelegramBot, chatId: number) => {
   const intervalId = setInterval(() => {
-    parseBankData().then((res) => {
-      const msg = formatBotResponseText(res);
-
-      if (store.getChatInfo(chatId) === msg) {
-        return;
-      }
-
-      store.setChatInfo(chatId, msg);
-
-      bot.sendMessage(chatId, msg, { parse_mode: "HTML" });
-    });
+    pingBanks(bot, chatId);
   }, 3000);
-
   store.setChatIntervals(chatId, intervalId);
 };

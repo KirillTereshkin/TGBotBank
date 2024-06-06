@@ -4,10 +4,12 @@ import store from "../storage";
 import { lastDataAbsentMsg } from "../constants";
 
 export const onLastData = (bot: TelegramBot, chatId: number) => {
-  const chatInfo = store.getChatInfo(chatId);
+  const chatInfo = store.getAllChatInfo(chatId);
 
   if (chatInfo) {
-    bot.sendMessage(chatId, chatInfo, { parse_mode: "HTML" });
+    Object.values(chatInfo).forEach((itm) => {
+      bot.sendMessage(chatId, itm, { parse_mode: "HTML" });
+    });
     return;
   }
 

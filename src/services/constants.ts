@@ -2,16 +2,38 @@ import { Banks, CommandsNames } from "./model";
 
 export const TOKEN = "7087024188:AAE4Eoun41NZ5lH7lqKTODBJlqDJBWmyOJE";
 
-export const BANK_REF = "https://www.cbr.ru/banking_sector/credit/coinfo/";
+export const CBR_COIN_INFO = "https://www.cbr.ru/banking_sector/credit/coinfo/";
 
-export const BANKS_REF: Record<Banks, string> = {
-  [Banks.tinkoff]:
-    "https://www.cbr.ru/banking_sector/credit/coinfo/?id=450000562",
-  [Banks.rossbank]:
-    "https://www.cbr.ru/banking_sector/credit/coinfo/?id=450000347",
-  [Banks.sovcombank]:
-    "https://cbr.ru/finorg/foinfo/reports/?ogrn=1144400000425",
-  [Banks.bsp]: "https://www.cbr.ru/banking_sector/credit/coinfo/?id=400000031",
+export const CBR_BANKS_REF = {
+  [Banks.tbank]: {
+    url: CBR_COIN_INFO,
+    postfix: "?id=450000562",
+  },
+
+  [Banks.rossbank]: {
+    url: CBR_COIN_INFO,
+    postfix: "?id=450000347",
+  },
+
+  [Banks.sovcombank]: {
+    url: "https://cbr.ru/finorg/foinfo/reports/",
+    postfix: "?ogrn=1144400000425",
+  },
+
+  [Banks.bsp]: {
+    url: CBR_COIN_INFO,
+    postfix: "?id=400000031",
+  },
+};
+
+export const CBR_BANKS_NAMES = {
+  [Banks.tbank]: "Т-Банк",
+
+  [Banks.rossbank]: "РоссБанк",
+
+  [Banks.sovcombank]: "СовКомБанк",
+
+  [Banks.bsp]: "БСП",
 };
 
 export const commands = [

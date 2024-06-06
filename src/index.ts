@@ -2,6 +2,7 @@ import TelegramBot from "node-telegram-bot-api";
 
 import { router } from "./services/router";
 import { TOKEN, commands } from "./services/constants";
+import { parseCbrBanksData } from "./services/helpers/parsers/parseCbrBanks";
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 

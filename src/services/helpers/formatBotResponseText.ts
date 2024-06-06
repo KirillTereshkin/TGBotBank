@@ -1,4 +1,5 @@
 import { BankData } from "../model";
+import { CBR_BANKS_NAMES } from "../constants";
 
 import { parseNumberLocale } from "./parseNumberLocale";
 
@@ -8,6 +9,10 @@ export const formatBotResponseText = (data: BankData | null) => {
   }
 
   return [
+    `<b>${CBR_BANKS_NAMES[data.bankName]}</b>`,
+
+    "\n",
+
     `<b>${data.reportTitle}</b>`,
 
     "\n\n",
