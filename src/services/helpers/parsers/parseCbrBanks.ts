@@ -77,20 +77,24 @@ export const parseBankData = async (
 };
 
 export const parseCbrBanksData = async () => {
-  const cbrArr = Object.entries(CBR_BANKS_REF).map(
-    ([bankName, { url, postfix }]) =>
-      parseBankData(bankName as Banks, url, postfix)
-  );
+  try {
+    const cbrArr = Object.entries(CBR_BANKS_REF).map(
+      ([bankName, { url, postfix }]) =>
+        parseBankData(bankName as Banks, url, postfix)
+    );
 
-  const data = await Promise.allSettled(cbrArr);
+    const data = await Promise.allSettled(cbrArr);
 
-  const dataProcessed = data.reduce((prev, itm) => {
-    if (itm.status === "fulfilled" && itm.value) {
-      return [...prev, itm.value];
-    }
+    const dataProcessed = data.reduce((prev, itm) => {
+      if (itm.status === "fulfilled" && itm.value) {
+        return [...prev, itm.value];
+      }
 
-    return prev;
-  }, [] as BankData[]);
+      return prev;
+    }, [] as BankData[]);
 
-  return dataProcessed;
+    return dataProcessed;
+  } catch (error) {
+    console.log(error);
+  }
 };

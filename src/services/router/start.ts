@@ -9,7 +9,7 @@ import { formatBotResponseText } from "../helpers/formatBotResponseText";
 const pingBanks = async (bot: TelegramBot, chatId: number) => {
   const data = await parseCbrBanksData();
 
-  data.forEach((itm) => {
+  data?.forEach((itm) => {
     const msg = formatBotResponseText(itm);
 
     if (store.getChatInfo(chatId, itm.bankName) === msg) {
