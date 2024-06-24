@@ -22,8 +22,10 @@ export const formatBotResponseText = (data: BankData | null) => {
     "\n",
 
     `Начало - <u>${parseNumberLocale(
-      data.activeElementsArr[0]
-    )} ₽</u>, Конец - <u>${parseNumberLocale(data.activeElementsArr[1])} ₽</u>`,
+      data.activeElementsArr[0] * 1000
+    )} ₽</u>, Конец - <u>${parseNumberLocale(
+      data.activeElementsArr[1] * 1000
+    )} ₽</u>`,
 
     "\n\n",
 
@@ -32,14 +34,16 @@ export const formatBotResponseText = (data: BankData | null) => {
     "\n",
 
     `Начало - <u>${parseNumberLocale(
-      data.passiveElementsArr[0]
+      data.passiveElementsArr[0] * 1000
     )} ₽</u>, Конец - <u>${parseNumberLocale(
-      data.passiveElementsArr[1]
+      data.passiveElementsArr[1] * 1000
     )} ₽</u>`,
 
     "\n\n",
 
     "<b>Результат:</b> ",
-    `<u>${parseNumberLocale(data.resultActiveAndPassiveCalculaation)} ₽</u>`,
+    `<u>${parseNumberLocale(
+      data.resultActiveAndPassiveCalculaation * 1000
+    )} ₽</u>`,
   ].join("");
 };
