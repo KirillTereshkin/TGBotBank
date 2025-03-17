@@ -33,7 +33,7 @@ export const parseBankData = async (
     const reportsLinkHtmlData = cheerio.load(reportsLinkHtml.data);
     const foundReport = reportsLinkHtmlData('h3:contains("Форма 101")')
       .next("[data-versions=data-versions]")
-      .children("[data-versions-items=2024]")
+      .children("[data-versions-items=2025]")
       .children()
       .last();
     const reportRef = new URL(foundReport.attr("href") || "", CBR_COIN_INFO)
